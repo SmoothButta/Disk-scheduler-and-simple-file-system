@@ -4,6 +4,8 @@ SRC = $(wildcard src/*.cpp)
 OBJ = $(SRC:.cpp=.o)
 TARGET = disk_simulator
 
+TESTS = tests/test_disk_scheduler.cpp tests/test_file_system.cpp
+
 all: $(TARGET)
 
 $(TARGET): $(OBJ)
@@ -12,5 +14,12 @@ $(TARGET): $(OBJ)
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+test: $(TESTS)
+	$(CXX) $(CXXFLAGS) -I./src -o test_disk $(TESTS[0])
+	$(CXX) $(CXXFLAGS) -I./src -o test_fs $(TESTS[1])
+	./test_disk
+	./test_fs
+
 clean:
-	rm -f $(OBJ) $(TARGET)
+	rm -f $(OBJ) $(TARGET) test_disk test_fs
+
