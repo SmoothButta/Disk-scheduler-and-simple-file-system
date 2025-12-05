@@ -22,14 +22,14 @@ all: setup $(DISK_BIN) $(FS_BIN)
 setup:
 	mkdir -p $(OBJ_DIR) $(BIN_DIR)
 
-# ---------------- Executables ----------------
+# Executables
 $(DISK_BIN): $(DISK_SCHED_OBJ)
 	$(CXX) $(CXXFLAGS) -o $(DISK_BIN) $(DISK_SCHED_OBJ)
 
 $(FS_BIN): $(FS_OBJ) $(MAIN_OBJ) $(DISK_SCHED_OBJ)
 	$(CXX) $(CXXFLAGS) -o $(FS_BIN) $(FS_OBJ) $(MAIN_OBJ) $(DISK_SCHED_OBJ)
 
-# ---------------- Object files ----------------
+# Object files
 $(DISK_SCHED_OBJ): $(SRC_DIR)/DiskScheduler.cpp $(SRC_DIR)/DiskScheduler.h $(SRC_DIR)/Disk.h
 	$(CXX) $(CXXFLAGS) -c $(SRC_DIR)/DiskScheduler.cpp -o $(DISK_SCHED_OBJ)
 
@@ -39,7 +39,7 @@ $(FS_OBJ): $(SRC_DIR)/FileSystem.cpp $(SRC_DIR)/FileSystem.h
 $(MAIN_OBJ): $(SRC_DIR)/main.cpp $(SRC_DIR)/DiskScheduler.h $(SRC_DIR)/FileSystem.h
 	$(CXX) $(CXXFLAGS) -c $(SRC_DIR)/main.cpp -o $(MAIN_OBJ)
 
-# ---------------- Tests ----------------
+# Tests
 $(DS_TEST): $(DISK_SCHED_OBJ) $(TEST_DIR)/test_diskscheduler.cpp
 	$(CXX) $(CXXFLAGS) -o $(DS_TEST) $(DISK_SCHED_OBJ) $(TEST_DIR)/test_diskscheduler.cpp
 
