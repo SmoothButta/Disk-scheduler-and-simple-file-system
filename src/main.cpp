@@ -6,7 +6,7 @@ int main() {
     // Disk Scheduler
     DiskScheduler scheduler(200, 50);
     scheduler.addRequest(95);
-    scheduler.addRequest(180);
+    scheduler.addRequest(10);
     scheduler.addRequest(34);
     scheduler.addRequest(119);
     scheduler.addRequest(11);
@@ -28,3 +28,4 @@ int main() {
 
     return 0;
 }
+
