@@ -25,7 +25,7 @@ bool FileSystem::createFile(const std::string& name, int size) {
     return true;
 }
 
-bool FileSystem::deleteFile(const std::string& name) {
+bool FileSystem::deleteFile(const std::string& name) {  //deletefiles
     auto it = directory.find(name);
     if (it == directory.end()) return false;
     for (int blk : it->second.blocks) freeBlocks[blk] = true;
@@ -46,3 +46,4 @@ std::string FileSystem::readFile(const std::string& name) {
     for (int blk : directory[name].blocks) os << blk << " ";
     return os.str();
 }
+
