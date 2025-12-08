@@ -11,7 +11,7 @@ void DiskScheduler::addRequest(int track) {
     requests.push_back(track);
 }
 
-int DiskScheduler::runFCFS() {
+int DiskScheduler::runFCFS() { //first come first serve
     int total = 0;
     int current = head;
     for (int r : requests) {
@@ -21,7 +21,7 @@ int DiskScheduler::runFCFS() {
     return total;
 }
 
-int DiskScheduler::runSSTF() {
+int DiskScheduler::runSSTF() { 
     int total = 0;
     int current = head;
     std::vector<int> pending = requests;
@@ -168,3 +168,4 @@ int DiskScheduler::runCLOOK() {
 
     return total;
 }
+
